@@ -1,0 +1,20 @@
+server:
+  port: 8889
+spring:
+  application:
+    name: client
+  cloud:
+    config:
+      label: dev #对应的分支
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: configServer
+
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/
